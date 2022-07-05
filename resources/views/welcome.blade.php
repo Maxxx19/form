@@ -34,8 +34,6 @@
         event.preventDefault();
         var form = $('#' + form_id)[0];
         var data = new FormData(form);
-        //$('input[name="approximate_amount"]').css('border', '1px solid red');
-        //$('input[name="company"]').css('border', '1px solid red');
         $.ajax({
             type: 'POST',
             url: '{{ route("storeForm") }}',
@@ -50,19 +48,6 @@
                 $('#formData').html(response.form);
                 console.log("SUCCESS : ", response.status);
 
-                /*var glaub = glaubiger_id.replace('_new', '');
-                newGlaub = glaub.slice(0, -1);
-                for (let i = 1; i <= 12; i++) {
-                    if ($('#' + newGlaub + i)) {
-                        if ((newGlaub + i) == glaub) {
-                            $('#' + newGlaub + i).append('<option selected value=' + data.id + '">' + data.company + '</option>');
-                        } else {
-                            $('#' + newGlaub + i).append('<option value=' + data.id + '">' + data.company + '</option>');
-                        }
-                    }
-                };
-                var rows = localStorage.getItem('rows');
-                $('#' + glaubiger_id).hide();*/
             },
             error: function(response) {
                 response.responseJSON.errors.name ? $('#nameError').text(response.responseJSON.errors.name) : $('#nameError').text(null);
@@ -74,27 +59,4 @@
             }
         });
     }
-    /*$("#name").validate({
-    rules: {
-        title: {
-            required: true,
-            minlength: 3,
-            remote: {
-                url: "/articles/check_unique",  
-                type: "post"
-            }
-        },
-        body: {
-            required: true,
-            minlength: 3
-        }
-    },
-    messages: {
-        title: {
-            remote: 'Already in use'
-        }
-    },
-    errorElement: "div",
-    errorClass: "validateError"
-});*/
 </script>
