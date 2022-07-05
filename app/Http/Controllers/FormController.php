@@ -10,8 +10,7 @@ class FormController extends Controller
     public function index(Request $request)
     {
 
-
-        return view('form'); //->with('users', $users);
+        return view('form');
     }
     public function store(Request $request)
     {
@@ -43,13 +42,12 @@ class FormController extends Controller
             ],
         ];
         $email_exists = false;
-        foreach($users as $data){
-            if($data['email'] == $request->email){
-              $email_exists = 'Email already exists!'; 
-              Log::info('Email already exists: '.$request->email);
-              //dd($email_exists);
-              return response()->json(array('success' => false, 'email_exists' => $email_exists));
-            }  
+        foreach ($users as $data) {
+            if ($data['email'] == $request->email) {
+                $email_exists = 'Email already exists!';
+                Log::info('Email already exists: ' . $request->email);
+                return response()->json(array('success' => false, 'email_exists' => $email_exists));
+            }
         }
         $returnHTML = view('form')
             ->with('status', 'Form Data Has Been inserted')
